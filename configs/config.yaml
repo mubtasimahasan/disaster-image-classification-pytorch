@@ -1,4 +1,4 @@
-debug: false
+debug: true
 device: "cuda"
 seed: 42
 classes:
@@ -8,10 +8,9 @@ classes:
   - Land_Disaster
   - Damaged_Infrastructure
   - Non_Damage
-path: "/kaggle/input/disaster/Comprehensive Disaster Dataset(CDD)"
+path: "./data/Comprehensive Disaster Dataset(CDD)"
 batch_size: 64
-num_workers: os.cpu_count()
+num_workers: 2
 split: [0.65, 0.20, 0.15]
 input_size: [224, 224]
-num_epochs: 5
-loss_fn: torch.nn.CrossEntropyLoss
+num_epochs: 25

@@ -94,10 +94,11 @@ def cross_validation(merged_dataloader: DataLoader, model: nn.Module, loss_fn: n
         
         # Train the model
         model_instance = get_model(model)
+        loss_fn= torch.nn.CrossEntropyLoss()
         optimizer_instance = torch.optim.SGD(params=model_instance.parameters(), lr=0.001)
-        train_func(data_loader=train_dataloader, 
+        train_func(data_loader=train_loader, 
                    model=model_instance, 
-                   loss_fn=CFG.loss_fn, 
+                   loss_fn=loss_fn, 
                    optimizer=optimizer_instance, 
                    device=device)
 
@@ -105,7 +106,7 @@ def cross_validation(merged_dataloader: DataLoader, model: nn.Module, loss_fn: n
         loaded_model = get_model(models.resnet50, pretrained=True, load=True)
         val_results = pred_func(data_loader = val_loader, 
                                 model = loaded_model, 
-                                loss_fn = CFG.loss_fn
+                                loss_fn = loss_fn
                                 ) 
 
         fold_accuracy = val_results["accuracy"]

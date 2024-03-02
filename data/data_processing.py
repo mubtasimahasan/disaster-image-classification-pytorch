@@ -9,6 +9,7 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 import random
 
+from utils.config import CFG
 
 class ImageFolderCustom(torch.utils.data.Dataset):
     def __init__(self, root, transform=None, target_transform=None) -> None:
@@ -68,7 +69,7 @@ def get_dataloader(dataset: torch.utils.data.Dataset) -> Tuple[DataLoader, DataL
     return train_dataloader, test_dataloader, valid_dataloader
 
 
-def display_random_images(dataset: torch.utils.data.dataset.Dataset, seed: CFG.seed):
+def display_random_images(dataset: torch.utils.data.dataset.Dataset):
     n = 5
     random_samples_idx = random.sample(range(len(dataset)), k=n)
     plt.figure(figsize=(15, 15))

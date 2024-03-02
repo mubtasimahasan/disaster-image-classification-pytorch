@@ -7,6 +7,7 @@ from tqdm import tqdm
 from timeit import default_timer as timer
 from sklearn.metrics import f1_score
 
+from utils.config import CFG
 
 def get_model(model: nn.Module, pretrained: bool = True, load: bool = False) -> nn.Module:
     # Load the pre-trained model
@@ -24,7 +25,7 @@ def get_model(model: nn.Module, pretrained: bool = True, load: bool = False) -> 
     return model_instance
 
 
-def train_func(model: nn.Module, data_loader: DataLoader, loss_fn: nn.Module, optimizer: torch.optim.Optimizer, device: CFG.device):
+def train_func(model: nn.Module, data_loader: DataLoader, loss_fn: nn.Module, optimizer: torch.optim.Optimizer, device: None):
     train_loss, train_acc = 0, 0
     model.to(device)
     for batch, (X, y) in enumerate(data_loader):
@@ -41,7 +42,7 @@ def train_func(model: nn.Module, data_loader: DataLoader, loss_fn: nn.Module, op
     return train_loss, train_acc
 
 
-def validation_func(data_loader: DataLoader, model: nn.Module, loss_fn: nn.Module, device: CFG.device):
+def validation_func(data_loader: DataLoader, model: nn.Module, loss_fn: nn.Module, device: None):
     valid_loss, valid_acc = 0, 0
     model.to(device)
     model.eval()
@@ -56,7 +57,7 @@ def validation_func(data_loader: DataLoader, model: nn.Module, loss_fn: nn.Modul
         return valid_loss, valid_acc
 
 
-def pred_func(data_loader: DataLoader, model: nn.Module, loss_fn: nn.Module, device: CFG.device):
+def pred_func(data_loader: DataLoader, model: nn.Module, loss_fn: nn.Module, device: None):
     eval_loss, eval_acc = 0, 0
     model.to(device)
     model.eval()
@@ -105,10 +106,9 @@ def train_and_evaluate(train_dataloader: torch.utils.data.DataLoader,
                        model: torch.nn.Module,
                        loss_fn: torch.nn.Module,
                        optimizer: torch.optim.Optimizer,
-                       device: CFG.device):
+                       device: None):
     
     class_names = CFG.classes
-    torch.manual_seed(CFG.seed)
     train_time_start_model_1 = timer()
     best_loss = 10
     results = {"train_loss": [], "train_acc": [], "valid_loss": [], "valid_acc": []}
