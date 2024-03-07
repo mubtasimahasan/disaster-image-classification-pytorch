@@ -20,7 +20,7 @@ class CFG:
         self.debug = config["debug"]
         
         if self.debug:
-            self.num_epochs = 2
+            self.num_epochs = 5
         
         if not torch.cuda.is_available():
             self.device = "cpu"

@@ -1,4 +1,4 @@
-debug: true
+debug: false
 device: "cuda"
 seed: 42
 classes:

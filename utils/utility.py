@@ -9,6 +9,9 @@ from sklearn.model_selection import KFold
 import matplotlib.pyplot as plt
 from typing import Tuple, Dict, List
 
+from utils.config import CFG
+from models.model_training import get_model, train_func, pred_func
+
 
 def plot_loss_curves(results: Dict[str, List]):
     loss = [x.item() for x in results['train_loss']]
@@ -100,13 +103,14 @@ def cross_validation(merged_dataloader: DataLoader, model: nn.Module, loss_fn: n
                    model=model_instance, 
                    loss_fn=loss_fn, 
                    optimizer=optimizer_instance, 
-                   device=device)
+                   device=CFG.device)
 
         # Evaluate the model on validation data
         loaded_model = get_model(models.resnet50, pretrained=True, load=True)
         val_results = pred_func(data_loader = val_loader, 
                                 model = loaded_model, 
-                                loss_fn = loss_fn
+                                loss_fn = loss_fn,
+                                device=CFG.device
                                 ) 
 
         fold_accuracy = val_results["accuracy"]
