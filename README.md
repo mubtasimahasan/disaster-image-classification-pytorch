@@ -1,6 +1,7 @@
-# Disaster Image Classification Task
+# Disaster Image Classification
 
-This repository contains code for a disaster image classification task based on the paper [Paper Link](https://arxiv.org/pdf/2107.01284v1.pdf). The task involves classifying images into six main categories of disasters using a pre-trained ResNet-50 architecture. The code consists of several Python scripts for data preprocessing, model training, evaluation, and comparison with the results reported in the paper.
+This repository contains code for a disaster image classification project based on the paper [Paper Link](https://arxiv.org/pdf/2107.01284v1.pdf). The project involves classifying images into six main categories of disasters using a pre-trained ResNet-50 architecture. The code consists of several Python scripts for data preprocessing, model training, evaluation, and comparison with the results reported in the paper.
+
 
 ## Dataset
 The dataset used for this task is the Comprehensive Disaster Dataset (CDD). It consists of images categorized into six main disaster categories: Fire_Disaster, Human_Damage, Water_Disaster, Land_Disaster, Damaged_Infrastructure, and Non_Damage. The dataset can be downloaded from [Dataset Link](https://drive.google.com/drive/folders/1VvkBRIYW6oD31K3gkPk4-4nlGE2poXFU).
@@ -19,8 +20,26 @@ The dataset used for this task is the Comprehensive Disaster Dataset (CDD). It c
 4. Load and edit the (`configs/config.yaml`) file for customization options such as batch size, learning rate, and number of epochs.
 3. Run the `cli.py` script to train the model, evaluate it, and compare the results with the paper.
 
+## Notebooks
+
+- [Kaggle_Script_Execution.ipynb](Kaggle_Script_Execution.ipynb): This notebook demonstrates how to clone this project in Kaggle and execute the `cli.py` script. Please note that the script is executed in debug mode, set to true, and runs for 5 epochs.
+- [Traditional_Notebook.ipynb](Traditional_Notebook.ipynb): This notebook provides a traditional Jupyter Notebook version of this project, showcasing the entire training and evaluation process.
+
 ## Results
-The trained model's performance is evaluated on the test set, and the results are compared with those reported in the paper. Additionally, cross-validation is performed to assess the model's robustness.
+
+Comparison of my fold-wise macro-average with the paper's Table III: Cross Validation Summary for CAM and TLAM.
+
+[Paper Link](https://arxiv.org/pdf/2107.01284v1.pdf) (Page 6)
+
+| Fold | CAM Accuracy | CAM F1 | TLAM Accuracy | TLAM F1 | My Accuracy | My F1 |
+|------|--------------|--------|---------------|---------|-------------|-------|
+| 1    | 0.96         | 0.89   | 0.96          | 0.89    | 0.99        | 0.97  |
+| 2    | 0.96         | 0.90   | 0.96          | 0.88    | 0.99        | 0.97  |
+| 3    | 0.95         | 0.89   | 0.96          | 0.88    | 0.99        | 0.96  |
+| 4    | 0.96         | 0.92   | 0.97          | 0.92    | 0.98        | 0.95  |
+| 5    | 0.96         | 0.90   | 0.96          | 0.88    | 0.96        | 0.90  |
+
+The detailed results and analysis can be found in [Traditional_Notebook.ipynb](Traditional_Notebook.ipynb).
 
 ## References
 - Link to Paper: [Paper Link](https://arxiv.org/pdf/2107.01284v1.pdf)
